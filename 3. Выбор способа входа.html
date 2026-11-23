@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Общегосударственная унифицированная стандартная электронная налоговая служба — Выбор способа входа</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Microsoft YaHei', 'PingFang SC', Arial, sans-serif;
+            background-color: #fff;
+            color: #333;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* --- Верхний баннер --- */
+        .top-banner {
+            background-color: #1677ff;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            padding: 0 24px;
+            height: 56px;
+            gap: 12px;
+            justify-content: space-between;
+        }
+        .top-banner-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .top-banner-logo {
+            width: 32px;
+            height: 32px;
+            background-color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            overflow: hidden;
+        }
+        .top-banner-logo svg {
+            width: 24px;
+            height: 24px;
+            fill: #d9230f;
+        }
+        .top-banner-title {
+            font-size: 18px;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+        .top-banner-location {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            background-color: rgba(255,255,255,0.25);
+            border-radius: 20px;
+            padding: 4px 14px;
+            font-size: 13px;
+            margin-left: 12px;
+            cursor: pointer;
+        }
+        .top-banner-location svg {
+            width: 14px;
+            height: 14px;
+            fill: #fff;
+        }
+        .top-banner-right {
+            font-size: 14px;
+            cursor: pointer;
+            opacity: 0.95;
+        }
+        .top-banner-right:hover {
+            opacity: 1;
+            text-decoration: underline;
+        }
+
+        /* --- Основная часть --- */
+        .main-wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 24px;
+        }
+
+        /* --- Заголовок раздела --- */
+        .section-title {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 24px;
+            font-weight: 400;
+            color: #222;
+            margin-bottom: 50px;
+        }
+        .section-title::before {
+            content: '';
+            display: block;
+            width: 5px;
+            height: 28px;
+            background-color: #1677ff;
+            border-radius: 2px;
+        }
+
+        /* --- Карточки входа --- */
+        .login-options {
+            display: flex;
+            justify-content: center;
+            gap: 80px;
+            flex-wrap: wrap;
+        }
+        .login-card {
+            width: 340px;
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            display: flex;
+            flex-direction: column;
+        }
+        .login-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+        }
+        .login-card-header {
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: 500;
+            color: #fff;
+            letter-spacing: 1px;
+        }
+        .login-card-body {
+            height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .login-card-body svg {
+            width: 120px;
+            height: 120px;
+            fill: none;
+            stroke: #fff;
+            stroke-width: 6;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        /* Карточка "Корпоративный / Бизнес-доступ" */
+        .card-enterprise .login-card-header {
+            background-color: #7aa7f0;
+        }
+        .card-enterprise .login-card-body {
+            background-color: #2b6ad6;
+        }
+
+        /* Карточка "Доступ для физических лиц" */
+        .card-individual .login-card-header {
+            background-color: #6bbdf5;
+        }
+        .card-individual .login-card-body {
+            background-color: #2589c7;
+        }
+
+        /* --- Пояснения --- */
+        .explanations {
+            max-width: 1200px;
+            margin: 20px auto 40px;
+            padding: 0 24px;
+        }
+        .explanations-inner {
+            background-color: #fff;
+            border-radius: 4px;
+            padding: 30px 40px;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+            border-left: 4px solid #1677ff;
+        }
+        .explanations h2 {
+            font-size: 20px;
+            color: #222;
+            margin-bottom: 16px;
+            font-weight: 500;
+        }
+        .explanations pre {
+            font-family: 'Consolas', 'Courier New', monospace;
+            font-size: 13px;
+            line-height: 1.6;
+            color: #333;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            background-color: #fafafa;
+            padding: 20px;
+            border-radius: 4px;
+            border: 1px solid #eee;
+            max-height: 600px;
+            overflow-y: auto;
+        }
+
+        @media (max-width: 900px) {
+            .top-banner-title {
+                font-size: 15px;
+            }
+            .section-title {
+                font-size: 20px;
+                margin-bottom: 30px;
+            }
+            .login-options {
+                gap: 30px;
+            }
+            .login-card {
+                width: 100%;
+                max-width: 340px;
+            }
+            .explanations {
+                padding: 0 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Верхний баннер -->
+    <header class="top-banner">
+        <div class="top-banner-left">
+            <div class="top-banner-logo">
+                <svg viewBox="0 0 24 24">
+                    <circle cx="12" cy="12" r="10" fill="#d9230f"/>
+                    <path d="M12 4 L14 9 L20 9 L15.5 12.5 L17.5 18 L12 14.5 L6.5 18 L8.5 12.5 L4 9 L10 9 Z" fill="#ffd700"/>
+                </svg>
+            </div>
+            <div class="top-banner-title">Общегосударственная унифицированная стандартная электронная налоговая служба</div>
+            <div class="top-banner-location">
+                <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                <span>Регион</span>
+            </div>
+        </div>
+        <div class="top-banner-right">Вернуться на главную</div>
+    </header>
+
+    <!-- Основная часть -->
+    <div class="main-wrapper">
+        <div class="section-title">Выберите способ входа</div>
+
+        <div class="login-options">
+            <!-- Карточка: Корпоративный / Бизнес-доступ -->
+            <div class="login-card card-enterprise">
+                <div class="login-card-header">Корпоративный / Бизнес-доступ</div>
+                <div class="login-card-body">
+                    <svg viewBox="0 0 100 100">
+                        <!-- Иконка здания -->
+                        <rect x="30" y="25" width="40" height="55" rx="2" />
+                        <rect x="38" y="35" width="12" height="6" rx="1" />
+                        <rect x="38" y="45" width="12" height="6" rx="1" />
+                        <rect x="55" y="45" width="12" height="10" rx="1" />
+                        <rect x="55" y="58" width="12" height="6" rx="1" />
+                        <line x1="25" y1="82" x2="75" y2="82" stroke-width="5" stroke-linecap="round" />
+                    </svg>
+                </div>
+            </div>
+
+            <!-- Карточка: Доступ для физических лиц -->
+            <div class="login-card card-individual">
+                <div class="login-card-header">Доступ для физических лиц</div>
+                <div class="login-card-body">
+                    <svg viewBox="0 0 100 100">
+                        <!-- Иконка человека с документом -->
+                        <circle cx="42" cy="38" r="10" />
+                        <path d="M 22 75 C 22 60, 62 60, 62 75" fill="none" />
+                        <rect x="68" y="30" width="22" height="45" rx="2" />
+                        <line x1="74" y1="40" x2="84" y2="40" stroke-width="4" stroke-linecap="round" />
+                        <line x1="74" y1="50" x2="84" y2="50" stroke-width="4" stroke-linecap="round" />
+                        <line x1="74" y1="60" x2="84" y2="60" stroke-width="4" stroke-linecap="round" />
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Блок пояснений из TXT -->
+    <div class="explanations">
+        <div class="explanations-inner">
+            <h2>Пояснения (перевод и словарь)</h2>
+            <pre>
+============================================
+[ВАРИАНТ 1: ПЕРЕВОД + СЛОВАРЬ]
+============================================
+
+┌─ ВЕРХНИЙ БАННЕР ──────────────────────────
+│  全国统一规范电子税务局
+│  (Общегосударственная унифицированная стандартная электронная налоговая служба)
+│
+└──────────────────────────────────────────
+
+┌─ НАВИГАЦИЯ ───────────────────────────────
+│  返回首页
+│  (Вернуться на главную)
+│
+└──────────────────────────────────────────
+
+┌─ ЗАГОЛОВОК СТРАНИЦЫ ──────────────────────
+│  选择登录方式
+│  (Выберите способ входа)
+│
+└──────────────────────────────────────────
+
+┌─ ВАРИАНТЫ ВХОДА ──────────────────────────
+│  企业业务
+│  (Корпоративный / Бизнес-доступ)
+│
+│  自然人业务
+│  (Доступ для физических лиц)
+│
+└──────────────────────────────────────────
+
+============================================
+[СЛОВАРЬ КЛЮЧЕВЫХ ТЕРМИНОВ]
+============================================
+全国统一规范电子税务局 → Общегосударственная унифицированная стандартная электронная налоговая служба
+返回首页 → Вернуться на главную
+选择登录方式 → Выберите способ входа
+企业业务 → Корпоративный / Бизнес-доступ
+自然人业务 → Доступ для физических лиц
+
+============================================
+
+
+============================================
+[ВАРИАНТ 2: ПОЛНОСТЬЮ НА РУССКОМ ЯЗЫКЕ]
+============================================
+
+┌─ ВЕРХНИЙ БАННЕР ──────────────────────────
+│  Общегосударственная унифицированная стандартная электронная налоговая служба
+│
+└──────────────────────────────────────────
+
+┌─ НАВИГАЦИЯ ───────────────────────────────
+│  Вернуться на главную
+│
+└──────────────────────────────────────────
+
+┌─ ЗАГОЛОВОК СТРАНИЦЫ ──────────────────────
+│  Выберите способ входа
+│
+└──────────────────────────────────────────
+
+┌─ ВАРИАНТЫ ВХОДА ──────────────────────────
+│  Корпоративный / Бизнес-доступ
+│  Доступ для физических лиц
+│
+└──────────────────────────────────────────
+
+============================================
+            </pre>
+        </div>
+    </div>
+
+</body>
+</html>

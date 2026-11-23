@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Общегосударственная унифицированная стандартная электронная налоговая служба — Общественные услуги</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Microsoft YaHei', 'PingFang SC', Arial, sans-serif;
+            background-color: #f0f2f5;
+            color: #333;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        ul {
+            list-style: none;
+        }
+
+        /* --- Header --- */
+        .header {
+            background-color: #1677ff;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            padding: 0 24px;
+            height: 60px;
+            gap: 20px;
+        }
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-shrink: 0;
+        }
+        .header-logo {
+            width: 36px;
+            height: 36px;
+            background-color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        .header-logo svg {
+            width: 28px;
+            height: 28px;
+            fill: #d9230f;
+        }
+        .header-title {
+            font-size: 20px;
+            font-weight: 500;
+            letter-spacing: 1px;
+        }
+        .header-location {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            background-color: #fff;
+            color: #1677ff;
+            border-radius: 20px;
+            padding: 4px 14px;
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+            margin-left: 4px;
+        }
+        .header-location svg {
+            width: 14px;
+            height: 14px;
+            fill: #1677ff;
+        }
+        .header-nav {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            flex: 1;
+            justify-content: center;
+        }
+        .header-nav a {
+            font-size: 15px;
+            color: #fff;
+            opacity: 0.85;
+            padding: 8px 18px;
+            border-radius: 4px;
+            white-space: nowrap;
+            transition: background-color 0.2s;
+        }
+        .header-nav a:hover {
+            opacity: 1;
+            background-color: rgba(255,255,255,0.15);
+        }
+        .header-nav a.active {
+            opacity: 1;
+            background-color: rgba(255,255,255,0.2);
+            font-weight: 500;
+        }
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-shrink: 0;
+        }
+        .header-user-avatar {
+            width: 32px;
+            height: 32px;
+            background-color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        .header-user-avatar svg {
+            width: 24px;
+            height: 24px;
+            fill: #1677ff;
+        }
+        .header-user-name {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        /* --- Main Layout --- */
+        .main-container {
+            display: flex;
+            max-width: 1600px;
+            margin: 20px auto;
+            padding: 0 24px;
+            gap: 20px;
+            align-items: flex-start;
+        }
+
+        /* --- Sidebar --- */
+        .sidebar {
+            width: 200px;
+            flex-shrink: 0;
+            background-color: #fff;
+            border-radius: 4px;
+            padding: 16px 0;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+        .sidebar h3 {
+            font-size: 16px;
+            font-weight: 500;
+            color: #333;
+            padding: 0 20px 16px;
+            border-bottom: 1px solid #f0f0f0;
+            margin-bottom: 8px;
+        }
+        .sidebar ul li a {
+            display: block;
+            padding: 10px 20px;
+            font-size: 14px;
+            color: #333;
+            transition: background-color 0.2s, color 0.2s;
+        }
+        .sidebar ul li a:hover {
+            color: #1677ff;
+            background-color: #f5f9ff;
+        }
+        .sidebar ul li.active a {
+            color: #fff;
+            background-color: #1677ff;
+            border-radius: 4px;
+            margin: 0 8px;
+            padding-left: 12px;
+        }
+
+        /* --- Content Area --- */
+        .content {
+            flex: 1;
+            background-color: #fff;
+            border-radius: 4px;
+            padding: 24px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            position: relative;
+            min-height: 600px;
+        }
+
+        /* --- Top Cards --- */
+        .top-cards {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+        .top-card {
+            flex: 1;
+            min-width: 180px;
+            height: 100px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            font-weight: 600;
+            color: #fff;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            text-shadow: 0 1px 4px rgba(0,0,0,0.15);
+        }
+        .top-card::after {
+            content: '';
+            position: absolute;
+            right: -10px;
+            bottom: -10px;
+            width: 80px;
+            height: 80px;
+            background-color: rgba(255,255,255,0.15);
+            border-radius: 50%;
+        }
+        .top-card::before {
+            content: '';
+            position: absolute;
+            right: 30px;
+            top: -20px;
+            width: 60px;
+            height: 60px;
+            background-color: rgba(255,255,255,0.1);
+            border-radius: 50%;
+        }
+        .card-1 { background: linear-gradient(135deg, #52c4b2, #3aa99b); }
+        .card-2 { background: linear-gradient(135deg, #f0a94b, #d98e2a); }
+        .card-3 { background: linear-gradient(135deg, #4bc2e8, #2a9bc7); }
+        .card-4 { background: linear-gradient(135deg, #4a84e8, #2a64c7); }
+
+        /* --- Calendar Section --- */
+        .section-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .calendar-wrapper {
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        /* --- Left Calendar --- */
+        .calendar-left {
+            flex: 0 0 320px;
+        }
+        .calendar-selectors {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+        .calendar-selectors select {
+            padding: 6px 28px 6px 12px;
+            border: 1px solid #d9d9d9;
+            border-radius: 4px;
+            font-size: 14px;
+            color: #333;
+            background-color: #fff;
+            cursor: pointer;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='%23999'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 8px center;
+            outline: none;
+        }
+        .calendar-nav {
+            display: flex;
+            gap: 6px;
+            margin-left: auto;
+        }
+        .calendar-nav button {
+            width: 28px;
+            height: 28px;
+            border: 1px solid #d9d9d9;
+            border-radius: 4px;
+            background-color: #fff;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            font-size: 14px;
+            transition: all 0.2s;
+        }
+        .calendar-nav button:hover {
+            border-color: #1677ff;
+            color: #1677ff;
+        }
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 4px;
+            text-align: center;
+            font-size: 14px;
+        }
+        .calendar-grid .day-header {
+            font-weight: 600;
+            color: #333;
+            padding: 8px 0;
+            font-size: 13px;
+            border-bottom: 1px solid #f0f0f0;
+            margin-bottom: 4px;
+        }
+        .calendar-grid .day {
+            padding: 8px 0;
+            border-radius: 4px;
+            cursor: pointer;
+            color: #333;
+            transition: background-color 0.2s;
+        }
+        .calendar-grid .day:hover {
+            background-color: #f0f7ff;
+        }
+        .calendar-grid .day.other-month {
+            color: #ccc;
+        }
+        .calendar-grid .day.selected {
+            background-color: #1677ff;
+            color: #fff;
+            font-weight: 600;
+        }
+        .calendar-notes {
+            margin-top: 16px;
+        }
+        .calendar-notes li {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            margin-bottom: 12px;
+            font-size: 13px;
+            color: #555;
+            line-height: 1.5;
+        }
+        .calendar-notes li::before {
+            content: '●';
+            color: #1677ff;
+            font-size: 10px;
+            flex-shrink: 0;
+            margin-top: 4px;
+        }
+
+        /* --- Right Calendar Table --- */
+        .calendar-right {
+            flex: 1;
+            min-width: 400px;
+            background-color: #4285f4;
+            border-radius: 6px;
+            padding: 24px;
+            color: #fff;
+            box-shadow: 0 4px 12px rgba(66, 133, 244, 0.3);
+            display: flex;
+            flex-direction: column;
+        }
+        .calendar-right-header {
+            font-size: 22px;
+            font-weight: 500;
+            text-align: center;
+            margin-bottom: 24px;
+            letter-spacing: 1px;
+        }
+        .tax-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            overflow-y: auto;
+            max-height: 500px;
+            padding-right: 4px;
+        }
+        .tax-list::-webkit-scrollbar {
+            width: 6px;
+        }
+        .tax-list::-webkit-scrollbar-thumb {
+            background-color: rgba(255,255,255,0.3);
+            border-radius: 3px;
+        }
+        .tax-item {
+            display: flex;
+            gap: 16px;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            font-size: 13px;
+            line-height: 1.5;
+        }
+        .tax-item:last-child {
+            border-bottom: none;
+        }
+        .tax-date {
+            flex: 0 0 90px;
+            font-weight: 500;
+            color: #ffe082;
+            white-space: nowrap;
+        }
+        .tax-desc {
+            flex: 1;
+            color: rgba(255,255,255,0.95);
+        }
+
+        /* --- Floating Help Button --- */
+        .floating-help {
+            position: fixed;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 4px;
+            z-index: 100;
+        }
+        .floating-help-label {
+            background-color: #d9e8ff;
+            color: #1677ff;
+            font-size: 12px;
+            padding: 4px 8px;
+            border-radius: 0 4px 4px 0;
+            margin-left: 0;
+        }
+        .floating-help-btn {
+            background-color: #1677ff;
+            color: #fff;
+            font-size: 14px;
+            padding: 12px 10px;
+            border-radius: 0 4px 4px 0;
+            cursor: pointer;
+            writing-mode: vertical-rl;
+            letter-spacing: 2px;
+            box-shadow: 2px 2px 8px rgba(0,0,0,0.15);
+            transition: background-color 0.2s;
+        }
+        .floating-help-btn:hover {
+            background-color: #4096ff;
+        }
+
+        /* --- Explanations --- */
+        .explanations {
+            max-width: 1600px;
+            margin: 20px auto 40px;
+            padding: 0 24px;
+        }
+        .explanations-inner {
+            background-color: #fff;
+            border-radius: 4px;
+            padding: 30px 40px;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+            border-left: 4px solid #1677ff;
+        }
+        .explanations h2 {
+            font-size: 20px;
+            color: #222;
+            margin-bottom: 16px;
+            font-weight: 500;
+        }
+        .explanations pre {
+            font-family: 'Consolas', 'Courier New', monospace;
+            font-size: 13px;
+            line-height: 1.6;
+            color: #333;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            background-color: #fafafa;
+            padding: 20px;
+            border-radius: 4px;
+            border: 1px solid #eee;
+            max-height: 600px;
+            overflow-y: auto;
+        }
+
+        @media (max-width: 900px) {
+            .header {
+                flex-wrap: wrap;
+                height: auto;
+                padding: 10px 16px;
+                gap: 10px;
+            }
+            .header-nav {
+                overflow-x: auto;
+                justify-content: flex-start;
+                width: 100%;
+            }
+            .header-nav a {
+                font-size: 13px;
+                padding: 6px 12px;
+                white-space: nowrap;
+            }
+            .header-title {
+                font-size: 15px;
+            }
+            .main-container {
+                flex-direction: column;
+                padding: 0 16px;
+            }
+            .sidebar {
+                width: 100%;
+            }
+            .calendar-left {
+                flex: 1 1 100%;
+            }
+            .calendar-right {
+                min-width: 100%;
+            }
+            .explanations {
+                padding: 0 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="header-left">
+            <div class="header-logo">
+                <svg viewBox="0 0 24 24">
+                    <circle cx="12" cy="12" r="10" fill="#d9230f"/>
+                    <path d="M12 4 L14 9 L20 9 L15.5 12.5 L17.5 18 L12 14.5 L6.5 18 L8.5 12.5 L4 9 L10 9 Z" fill="#ffd700"/>
+                </svg>
+            </div>
+            <div class="header-title">Общегосударственная унифицированная стандартная электронная налоговая служба</div>
+            <div class="header-location">
+                <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                Тяньцзинь
+            </div>
+        </div>
+        <nav class="header-nav">
+            <a href="#">Главная</a>
+            <a href="#">Подать налоговую декларацию</a>
+            <a href="#">Запросы</a>
+            <a href="#" class="active">Общественные услуги</a>
+            <a href="#">Региональные особенности</a>
+        </nav>
+        <div class="header-right">
+            <div class="header-user-avatar">
+                <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+            </div>
+            <span class="header-user-name">**S</span>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <div class="main-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <h3>Общественные услуги</h3>
+            <ul>
+                <li class="active"><a href="#">Пропаганда и консультирование</a></li>
+                <li><a href="#">Запросы на обслуживание</a></li>
+                <li><a href="#">Общественные запросы</a></li>
+                <li><a href="#">Управление сообщениями о налоговых правонарушениях</a></li>
+            </ul>
+        </aside>
+
+        <!-- Content -->
+        <main class="content">
+            <!-- Top Cards -->
+            <div class="top-cards">
+                <div class="top-card card-1">База знаний по налогам и сборам</div>
+                <div class="top-card card-2">Новейшие нормативные акты</div>
+                <div class="top-card card-3">Карта налоговых органов</div>
+                <div class="top-card card-4">Руководство по налоговым процедурам</div>
+            </div>
+
+            <!-- Calendar Section -->
+            <div class="section-title">Календарь налоговых процедур</div>
+            <div class="calendar-wrapper">
+                <!-- Left: Calendar Widget -->
+                <div class="calendar-left">
+                    <div class="calendar-selectors">
+                        <select>
+                            <option>Июнь</option>
+                        </select>
+                        <select>
+                            <option>2026</option>
+                        </select>
+                        <div class="calendar-nav">
+                            <button>&lt;</button>
+                            <button>o</button>
+                            <button>&gt;</button>
+                        </div>
+                    </div>
+                    <div class="calendar-grid">
+                        <div class="day-header">Вс</div>
+                        <div class="day-header">Пн</div>
+                        <div class="day-header">Вт</div>
+                        <div class="day-header">Ср</div>
+                        <div class="day-header">Чт</div>
+                        <div class="day-header">Пт</div>
+                        <div class="day-header">Сб</div>
+
+                        <!-- Row 1 -->
+                        <div class="day other-month"></div>
+                        <div class="day">1</div>
+                        <div class="day">2</div>
+                        <div class="day">3</div>
+                        <div class="day">4</div>
+                        <div class="day">5</div>
+                        <div class="day">6</div>
+                        <!-- Row 2 -->
+                        <div class="day">7</div>
+                        <div class="day">8</div>
+                        <div class="day">9</div>
+                        <div class="day">10</div>
+                        <div class="day">11</div>
+                        <div class="day">12</div>
+                        <div class="day">13</div>
+                        <!-- Row 3 -->
+                        <div class="day">14</div>
+                        <div class="day">15</div>
+                        <div class="day">16</div>
+                        <div class="day">17</div>
+                        <div class="day">18</div>
+                        <div class="day">19</div>
+                        <div class="day">20</div>
+                        <!-- Row 4 -->
+                        <div class="day">21</div>
+                        <div class="day">22</div>
+                        <div class="day">23</div>
+                        <div class="day">24</div>
+                        <div class="day">25</div>
+                        <div class="day">26</div>
+                        <div class="day selected">27</div>
+                        <!-- Row 5 -->
+                        <div class="day">28</div>
+                        <div class="day">29</div>
+                        <div class="day">30</div>
+                        <div class="day other-month">1</div>
+                        <div class="day other-month">2</div>
+                        <div class="day other-month">3</div>
+                        <div class="day other-month">4</div>
+                        <!-- Row 6 -->
+                        <div class="day other-month">5</div>
+                        <div class="day other-month">6</div>
+                        <div class="day other-month">7</div>
+                        <div class="day other-month">8</div>
+                        <div class="day other-month">9</div>
+                        <div class="day other-month">10</div>
+                        <div class="day other-month">11</div>
+                    </div>
+                    <ul class="calendar-notes">
+                        <li>Базовое страхование по старости для городских и сельских жителей — срок уплаты до 16:00 последнего дня месяца</li>
+                        <li>Налог на транспортные средства и суда</li>
+                    </ul>
+                </div>
+
+                <!-- Right: Tax Table -->
+                <div class="calendar-right">
+                    <div class="calendar-right-header">Календарь налоговых процедур на июнь 2026 года</div>
+                    <div class="tax-list">
+                        <div class="tax-item">
+                            <div class="tax-date">01–30 число</div>
+                            <div class="tax-desc">Базовое страхование по старости для городских и сельских жителей — срок уплаты до 16:00 последнего дня месяца</div>
+                        </div>
+                        <div class="tax-item">
+                            <div class="tax-date">01–30 число</div>
+                            <div class="tax-desc">Налог на транспортные средства и суда</div>
+                        </div>
+                        <div class="tax-item">
+                            <div class="tax-date">01–30 число</div>
+                            <div class="tax-desc">Налог на доходы физических лиц — период годового перерасчета по совокупному доходу</div>
+                        </div>
+                        <div class="tax-item">
+                            <div class="tax-date">01–01 число</div>
+                            <div class="tax-desc">Налог на недвижимость и земельный налог в городах и поселках</div>
+                        </div>
+                        <div class="tax-item">
+                            <div class="tax-date">01–15 число</div>
+                            <div class="tax-desc">НДС, акциз, налог на прибыль, НДФЛ, налог на прирост стоимости земли, ресурсный налог, сбор на развитие культуры, дополнительные сборы к НДС (акцизу), фонд поддержки переселенцев из крупных водохранилищ, фонд развития возобновляемой энергии, фонд строительства крупных государственных гидроузлов, сбор за использование морских нефтяных месторождений, страхование профессиональных травм (ежемесячно)</div>
+                        </div>
+                        <div class="tax-item">
+                            <div class="tax-date">01–30 число</div>
+                            <div class="tax-desc">Социальное страхование для самозанятых лиц — срок уплаты до 16:00 последнего дня месяца</div>
+                        </div>
+                        <div class="tax-item">
+                            <div class="tax-date">01–30 число</div>
+                            <div class="tax-desc">Социальное страхование для предприятий и государственных учреждений</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Floating Help Button -->
+    <div class="floating-help">
+        <div class="floating-help-label">Нужна помощь?</div>
+        <div class="floating-help-btn">Взаимодействие</div>
+    </div>
+
+    <!-- Explanations -->
+    <div class="explanations">
+        <div class="explanations-inner">
+            <h2>Пояснения (перевод и словарь)</h2>
+            <pre>
+============================================
+[ВАРИАНТ 1: ПЕРЕВОД + СЛОВАРЬ]
+============================================
+
+┌─ ВЕРХНИЙ БАННЕР ──────────────────────────
+│  全国统一规范电子税务局
+│  (Общегосударственная унифицированная стандартная электронная налоговая служба)
+│
+│  [Строка] 天津
+│  (Тяньцзинь)
+│
+└──────────────────────────────────────────
+
+┌─ ОСНОВНАЯ НАВИГАЦИЯ (ВЕРХНЯЯ) ──────────
+│  [Пункт] 首页
+│  (Главная)
+│
+│  [Пункт] 我要办税
+│  (Подать налоговую декларацию)
+│
+│  [Пункт] 我要查询
+│  (Запросы)
+│
+│  [Пункт] 公众服务
+│  (Общественные услуги)
+│
+│  [Пункт] 地方特色
+│  (Региональные особенности)
+│
+└──────────────────────────────────────────
+
+┌─ ЗАГОЛОВОК РАЗДЕЛА ───────────────────────
+│  公众服务
+│  (Общественные услуги)
+│
+└──────────────────────────────────────────
+
+┌─ РАЗДЕЛ "ОБЩЕСТВЕННЫЕ УСЛУГИ" ───────────
+│
+│  ┌─ ГРУППА "ОБЩЕСТВЕННЫЕ УСЛУГИ" ───────┐
+│  │  宣传辅导                               │
+│  │  (Пропаганда и консультирование)       │
+│  │                                         │
+│  │  税费知识库                             │
+│  │  (База знаний по налогам и сборам)     │
+│  │                                         │
+│  │  最新法规                               │
+│  │  (Новейшие нормативные акты)           │
+│  │                                         │
+│  │  办税地图                               │
+│  │  (Карта налоговых органов)             │
+│  │                                         │
+│  │  办税指南                               │
+│  │  (Руководство по налоговым процедурам) │
+│  │                                         │
+│  │  服务诉求                               │
+│  │  (Запросы на обслуживание)             │
+│  │                                         │
+│  │  公众查询                               │
+│  │  (Общественные запросы)                │
+│  │                                         │
+│  │  办税日历                               │
+│  │  (Календарь налоговых процедур)        │
+│  │                                         │
+│  │  税收违法行为检举管理                    │
+│  │  (Управление сообщениями о налоговых   │
+│  │   правонарушениях)                     │
+│  │                                         │
+│  └─────────────────────────────────────────┘
+│
+└──────────────────────────────────────────
+
+┌─ БЛОК "НУЖНА ПОМОЩЬ?" ────────────────────
+│  需要帮助吗？
+│  (Нужна помощь?)
+│
+│  [Кнопка] 征纳互动
+│  (Взаимодействие налогоплательщика
+│   и налогового органа)
+│
+└──────────────────────────────────────────
+
+┌─ БЛОК "КАЛЕНДАРЬ НАЛОГОВЫХ ПРОЦЕДУР" ──
+│  6月 2026
+│  (Июнь 2026)
+│
+│  2026年6月份办税日历
+│  (Календарь налоговых процедур на июнь 2026 года)
+│
+│  [Календарная сетка]
+│  日 (Вс) | 一 (Пн) | 二 (Вт) | 三 (Ср) | 四 (Чт) | 五 (Пт) | 六 (Сб)
+│         |         |   1    |   2    |   3    |   4    |   5    |   6    |   7
+│    8    |   9    |   10   |   11   |   12   |   13   |   14
+│   15    |   16   |   17   |   18   |   19   |   20   |   21
+│   22    |   23   |   24   |   25   |   26   |   27   |   28
+│         |         |         |         |         |         |         |
+│
+│  ─── ДАТЫ И НАЛОГИ ──────────────────────
+│
+│  01日-30日
+│  (01-30 число)
+│  城乡居民基本养老保险费（当月缴费时间截至最后一日16时）
+│  (Базовое страхование по старости для городских и сельских жителей -
+│   срок уплаты до 16:00 последнего дня месяца)
+│
+│  01日-30日
+│  (01-30 число)
+│  车船税
+│  (Налог на транспортные средства и суда)
+│
+│  01日-30日
+│  (01-30 число)
+│  个人所得税（综合所得汇算清缴期）
+│  (Налог на доходы физических лиц - период годового перерасчета
+│   по совокупному доходу)
+│
+│  01日-01日
+│  (01-01 число)
+│  房产税城镇土地使用税
+│  (Налог на недвижимость и земельный налог в городах и поселках)
+│
+│  01日-15日
+│  (01-15 число)
+│  增值税消费税企业所得税个人所得税土地增值税资源税文化事业建设费
+│  增值税（消费税）附征税费大中型水库移民后期扶持基金可再生能源
+│  发展基金国家重大水利工程建设基金海上石油矿区使用费职业伤害保障
+│  (НДС, акциз, налог на прибыль, НДФЛ, налог на прирост стоимости
+│   земли, ресурсный налог, сбор на развитие культуры, дополнительные
+│   сборы к НДС (акцизу), фонд поддержки переселенцев из крупных
+│   водохранилищ, фонд развития возобновляемой энергии, фонд
+│   строительства крупных государственных гидроузлов, сбор за
+│   использование морских нефтяных месторождений, страхование
+│   профессиональных травм) - (ежемесячно)
+│
+│  01日-30日
+│  (01-30 число)
+│  灵活就业人员社会保险费（当月缴费时间截至最后一日16时）
+│  (Социальное страхование для самозанятых лиц -
+│   срок уплаты до 16:00 последнего дня месяца)
+│
+│  ·城乡居民基本养老保险费（当月缴费时间截至最后一日16时）
+│  (Базовое страхование по старости для городских и сельских жителей -
+│   срок уплаты до 16:00 последнего дня месяца)
+│
+│  01日-30日
+│  (01-30 число)
+│  企业及机关事业单位社会保险费
+│  (Социальное страхование для предприятий и государственных учреждений)
+│
+│  车船税
+│  (Налог на транспортные средства и суда)
+│
+└──────────────────────────────────────────
+
+============================================
+[СЛОВАРЬ КЛЮЧЕВЫХ ТЕРМИНОВ]
+============================================
+宣传辅导 → Пропаганда и консультирование
+税费知识库 → База знаний по налогам и сборам
+最新法规 → Новейшие нормативные акты
+办税地图 → Карта налоговых органов
+办税指南 → Руководство по налоговым процедурам
+服务诉求 → Запросы на обслуживание
+公众查询 → Общественные запросы
+办税日历 → Календарь налоговых процедур
+税收违法行为检举管理 → Управление сообщениями о налоговых правонарушениях
+需要帮助吗？→ Нужна помощь?
+征纳互动 → Взаимодействие налогоплательщика и налогового органа
+城乡居民基本养老保险费 → Базовое страхование по старости для городских и сельских жителей
+车船税 → Налог на транспортные средства и суда
+个人所得税（综合所得汇算清缴期）→ Налог на доходы физических лиц (период годового перерасчета по совокупному доходу)
+房产税城镇土地使用税 → Налог на недвижимость и земельный налог в городах и поселках
+增值税 → НДС (налог на добавленную стоимость)
+消费税 → Акциз
+企业所得税 → Налог на прибыль предприятий
+个人所得税 → Налог на доходы физических лиц
+土地增值税 → Налог на прирост стоимости земли
+资源税 → Ресурсный налог
+文化事业建设费 → Сбор на развитие культуры
+灵活就业人员社会保险费 → Социальное страхование для самозанятых лиц
+企业及机关事业单位社会保险费 → Социальное страхование для предприятий и государственных учреждений
+
+============================================
+
+
+============================================
+[ВАРИАНТ 2: ПОЛНОСТЬЮ НА РУССКОМ ЯЗЫКЕ]
+============================================
+
+┌─ ВЕРХНИЙ БАННЕР ──────────────────────────
+│  Общегосударственная унифицированная стандартная электронная налоговая служба
+│
+│  [Строка] Тяньц

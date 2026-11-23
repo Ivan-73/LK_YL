@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Общегосударственная унифицированная стандартная электронная налоговая служба — Выбор региона</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Microsoft YaHei', 'PingFang SC', Arial, sans-serif;
+            background-color: #f5f6f8;
+            color: #333;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* --- Верхний баннер --- */
+        .top-banner {
+            background-color: #1677ff;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            padding: 0 24px;
+            height: 60px;
+            gap: 12px;
+        }
+        .top-banner-logo {
+            width: 36px;
+            height: 36px;
+            background-color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            overflow: hidden;
+        }
+        .top-banner-logo svg {
+            width: 28px;
+            height: 28px;
+            fill: #d9230f;
+        }
+        .top-banner-title {
+            font-size: 20px;
+            font-weight: 500;
+            letter-spacing: 1px;
+        }
+
+        /* --- Основная часть --- */
+        .main-wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 24px;
+        }
+        .page-title {
+            font-size: 16px;
+            color: #333;
+            margin-bottom: 20px;
+            font-weight: 400;
+        }
+
+        /* --- Таблица регионов --- */
+        .region-table {
+            background-color: #fff;
+            border: 1px solid #d9e1ec;
+            border-radius: 2px;
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+        }
+        .region-row {
+            display: flex;
+            align-items: stretch;
+            border-bottom: 1px solid #d9e1ec;
+        }
+        .region-row:last-child {
+            border-bottom: none;
+        }
+        .region-group-label {
+            width: 100px;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            color: #1677ff;
+            font-weight: 400;
+            padding: 18px 0;
+            border-right: 1px solid #e8eef5;
+            background-color: #fafcff;
+        }
+        .region-list {
+            flex: 1;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 4px 0;
+            padding: 14px 16px;
+        }
+        .region-item {
+            display: inline-block;
+            padding: 4px 12px;
+            font-size: 14px;
+            color: #333;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: color 0.2s, background-color 0.2s;
+            border-radius: 2px;
+        }
+        .region-item:hover {
+            color: #1677ff;
+            background-color: #f0f6ff;
+        }
+
+        /* --- Нижняя строка состояния --- */
+        .bottom-status-bar {
+            background-color: #f5f6f8;
+            padding: 10px 24px;
+            font-size: 12px;
+            color: #999;
+            text-align: center;
+            border-top: 1px solid #e5e5e5;
+            margin-top: 40px;
+        }
+
+        /* --- Пояснения --- */
+        .explanations {
+            max-width: 1200px;
+            margin: 20px auto 40px;
+            padding: 0 24px;
+        }
+        .explanations-inner {
+            background-color: #fff;
+            border-radius: 4px;
+            padding: 30px 40px;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+            border-left: 4px solid #1677ff;
+        }
+        .explanations h2 {
+            font-size: 20px;
+            color: #222;
+            margin-bottom: 16px;
+            font-weight: 500;
+        }
+        .explanations pre {
+            font-family: 'Consolas', 'Courier New', monospace;
+            font-size: 13px;
+            line-height: 1.6;
+            color: #333;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            background-color: #fafafa;
+            padding: 20px;
+            border-radius: 4px;
+            border: 1px solid #eee;
+            max-height: 600px;
+            overflow-y: auto;
+        }
+
+        @media (max-width: 900px) {
+            .region-group-label {
+                width: 70px;
+                font-size: 16px;
+            }
+            .region-item {
+                padding: 4px 8px;
+                font-size: 13px;
+            }
+            .top-banner-title {
+                font-size: 16px;
+            }
+            .explanations {
+                padding: 0 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Верхний баннер -->
+    <header class="top-banner">
+        <div class="top-banner-logo">
+            <!-- Стилизованный логотип: красная эмблема -->
+            <svg viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="10" fill="#d9230f"/>
+                <path d="M12 4 L14 9 L20 9 L15.5 12.5 L17.5 18 L12 14.5 L6.5 18 L8.5 12.5 L4 9 L10 9 Z" fill="#ffd700"/>
+            </svg>
+        </div>
+        <div class="top-banner-title">Общегосударственная унифицированная стандартная электронная налоговая служба</div>
+    </header>
+
+    <!-- Основная часть -->
+    <div class="main-wrapper">
+        <div class="page-title">Пожалуйста, выберите региональную электронную налоговую службу для входа</div>
+
+        <div class="region-table">
+            <!-- Группа A-G -->
+            <div class="region-row">
+                <div class="region-group-label">A-G</div>
+                <div class="region-list">
+                    <span class="region-item">Аньхой</span>
+                    <span class="region-item">Пекин</span>
+                    <span class="region-item">Чунцин</span>
+                    <span class="region-item">Далянь</span>
+                    <span class="region-item">Фуцзянь</span>
+                    <span class="region-item">Гуандун</span>
+                    <span class="region-item">Гуанси-Чжуанский автономный район</span>
+                    <span class="region-item">Гуйчжоу</span>
+                    <span class="region-item">Ганьсу</span>
+                </div>
+            </div>
+            <!-- Группа H-K -->
+            <div class="region-row">
+                <div class="region-group-label">H-K</div>
+                <div class="region-list">
+                    <span class="region-item">Хэбэй</span>
+                    <span class="region-item">Хэйлунцзян</span>
+                    <span class="region-item">Хэнань</span>
+                    <span class="region-item">Хубэй</span>
+                    <span class="region-item">Хунань</span>
+                    <span class="region-item">Хайнань</span>
+                    <span class="region-item">Цзилинь</span>
+                    <span class="region-item">Цзянсу</span>
+                    <span class="region-item">Цзянси</span>
+                </div>
+            </div>
+            <!-- Группа L-S -->
+            <div class="region-row">
+                <div class="region-group-label">L-S</div>
+                <div class="region-list">
+                    <span class="region-item">Ляонин</span>
+                    <span class="region-item">Внутренняя Монголия</span>
+                    <span class="region-item">Нинбо</span>
+                    <span class="region-item">Нинся-Хуэйский автономный район</span>
+                    <span class="region-item">Циндао</span>
+                    <span class="region-item">Цинхай</span>
+                    <span class="region-item">Шаньси</span>
+                    <span class="region-item">Шанхай</span>
+                    <span class="region-item">Шэньси</span>
+                    <span class="region-item">Сычуань</span>
+                    <span class="region-item">Шаньдун</span>
+                    <span class="region-item">Шэньчжэнь</span>
+                </div>
+            </div>
+            <!-- Группа T-Z -->
+            <div class="region-row">
+                <div class="region-group-label">T-Z</div>
+                <div class="region-list">
+                    <span class="region-item">Тяньцзинь</span>
+                    <span class="region-item">Сямынь</span>
+                    <span class="region-item">Тибетский автономный район</span>
+                    <span class="region-item">Синьцзян-Уйгурский автономный район</span>
+                    <span class="region-item">Юньнань</span>
+                    <span class="region-item">Чжэцзян</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Блок пояснений из TXT -->
+    <div class="explanations">
+        <div class="explanations-inner">
+            <h2>Пояснения (перевод и словарь)</h2>
+            <pre>
+============================================
+[ВАРИАНТ 1: ПЕРЕВОД + СЛОВАРЬ]
+============================================
+
+┌─ ВЕРХНИЙ БАННЕР ──────────────────────────
+│  全国统一规范电子税务局
+│  (Общегосударственная унифицированная стандартная электронная налоговая служба)
+│
+└──────────────────────────────────────────
+
+┌─ ЗАГОЛОВОК СТРАНИЦЫ ──────────────────────
+│  请选择登录的所属电子税务局
+│  (Пожалуйста, выберите региональную электронную налоговую службу для входа)
+│
+└──────────────────────────────────────────
+
+┌─ ВЫБОР РЕГИОНА (ГРУППА A-G) ─────────────
+│ 安徽省 (Аньхой)
+│ 北京市 (Пекин)
+│ 重庆市 (Чунцин)
+│ 大连市 (Далянь)
+│ 福建省 (Фуцзянь)
+│ 广东省 (Гуандун)
+│ 广西壮族自治区 (Гуанси-Чжуанский автономный район)
+│ 贵州省 (Гуйчжоу)
+│ 甘肃省 (Ганьсу)
+│
+└──────────────────────────────────────────
+
+┌─ ВЫБОР РЕГИОНА (ГРУППА H-K) ─────────────
+│ 河北省 (Хэбэй)
+│ 黑龙江省 (Хэйлунцзян)
+│ 河南省 (Хэнань)
+│ 湖北省 (Хубэй)
+│ 湖南省 (Хунань)
+│ 海南省 (Хайнань)
+│ 吉林省 (Цзилинь)
+│ 江苏省 (Цзянсу)
+│ 江西省 (Цзянси)
+│
+└──────────────────────────────────────────
+
+┌─ ВЫБОР РЕГИОНА (ГРУППА L-S) ─────────────
+│ 辽宁省 (Ляонин)
+│ 内蒙古自治区 (Внутренняя Монголия)
+│ 宁波市 (Нинбо)
+│ 宁夏回族自治区 (Нинся-Хуэйский автономный район)
+│ 青岛市 (Циндао)
+│ 青海省 (Цинхай)
+│ 山西省 (Шаньси)
+│ 上海市 (Шанхай)
+│ 陕西省 (Шэньси)
+│ 四川省 (Сычуань)
+│ 山东省 (Шаньдун)
+│ 深圳市 (Шэньчжэнь)
+│
+└──────────────────────────────────────────
+
+┌─ ВЫБОР РЕГИОНА (ГРУППА T-Z) ─────────────
+│ 天津市 (Тяньцзинь)
+│ 厦门市 (Сямынь)
+│ 西藏自治区 (Тибетский автономный район)
+│ 新疆维吾尔自治区 (Синьцзян-Уйгурский автономный район)
+│ 云南省 (Юньнань)
+│ 浙江省 (Чжэцзян)
+│
+└──────────────────────────────────────────
+
+┌─ НИЖНИЙ БАННЕР ───────────────────────────
+│  [Строка] 底部状态栏
+│  (Нижняя строка состояния)
+│
+└──────────────────────────────────────────
+
+┌─ СИСТЕМНАЯ ИНФОРМАЦИЯ ────────────────────
+│  22°
+│  11:01:56
+│  27.06.2026
+│
+└──────────────────────────────────────────
+
+============================================
+[СЛОВАРЬ КЛЮЧЕВЫХ ТЕРМИНОВ]
+============================================
+全国统一规范电子税务局 → Общегосударственная унифицированная стандартная электронная налоговая служба
+请选择登录的所属电子税务局 → Пожалуйста, выберите региональную электронную налоговую службу для входа
+安徽省 → Аньхой
+北京市 → Пекин
+重庆市 → Чунцин
+大连市 → Далянь
+福建省 → Фуцзянь
+广东省 → Гуандун
+广西壮族自治区 → Гуанси-Чжуанский автономный район
+贵州省 → Гуйчжоу
+甘肃省 → Ганьсу
+河北省 → Хэбэй
+黑龙江省 → Хэйлунцзян
+河南省 → Хэнань
+湖北省 → Хубэй
+湖南省 → Хунань
+海南省 → Хайнань
+吉林省 → Цзилинь
+江苏省 → Цзянсу
+江西省 → Цзянси
+辽宁省 → Ляонин
+内蒙古自治区 → Внутренняя Монголия
+宁波市 → Нинбо
+宁夏回族自治区 → Нинся-Хуэйский автономный район
+青岛市 → Циндао
+青海省 → Цинхай
+山西省 → Шаньси
+上海市 → Шанхай
+陕西省 → Шэньси
+四川省 → Сычуань
+山东省 → Шаньдун
+深圳市 → Шэньчжэнь
+天津市 → Тяньцзинь
+厦门市 → Сямынь
+西藏自治区 → Тибетский автономный район
+新疆维吾尔自治区 → Синьцзян-Уйгурский автономный район
+云南省 → Юньнань
+浙江省 → Чжэцзян
+底部状态栏 → Нижняя строка состояния
+
+============================================
+
+
+============================================
+[ВАРИАНТ 2: ПОЛНОСТЬЮ НА РУССКОМ ЯЗЫКЕ]
+============================================
+
+┌─ ВЕРХНИЙ БАННЕР ──────────────────────────
+│  Общегосударственная унифицированная стандартная электронная налоговая служба
+│
+└──────────────────────────────────────────
+
+┌─ ЗАГОЛОВОК СТРАНИЦЫ ──────────────────────
+│  Пожалуйста, выберите региональную электронную налоговую службу для входа
+│
+└──────────────────────────────────────────
+
+┌─ ВЫБОР РЕГИОНА (ГРУППА A-G) ─────────────
+│  Аньхой
+│  Пекин
+│  Чунцин
+│  Далянь
+│  Фуцзянь
+│  Гуандун
+│  Гуанси-Чжуанский автономный район
+│  Гуйчжоу
+│  Ганьсу
+│
+└──────────────────────────────────────────
+
+┌─ ВЫБОР РЕГИОНА (ГРУППА H-K) ─────────────
+│  Хэбэй
+│  Хэйлунцзян
+│  Хэнань
+│  Хубэй
+│  Хунань
+│  Хайнань
+│  Цзилинь
+│  Цзянсу
+│  Цзянси
+│
+└──────────────────────────────────────────
+
+┌─ ВЫБОР РЕГИОНА (ГРУППА L-S) ─────────────
+│  Ляонин
+│  Внутренняя Монголия
+│  Нинбо
+│  Нинся-Хуэйский автономный район
+│  Циндао
+│  Цинхай
+│  Шаньси
+│  Шанхай
+│  Шэньси
+│  Сычуань
+│  Шаньдун
+│  Шэньчжэнь
+│
+└──────────────────────────────────────────
+
+┌─ ВЫБОР РЕГИОНА (ГРУППА T-Z) ─────────────
+│  Тяньцзинь
+│  Сямынь
+│  Тибетский автономный район
+│  Синьцзян-Уйгурский автономный район
+│  Юньнань
+│  Чжэцзян
+│
+└──────────────────────────────────────────
+
+┌─ НИЖНИЙ БАННЕР ───────────────────────────
+│  [Строка] Нижняя строка состояния
+│
+└──────────────────────────────────────────
+
+┌─ СИСТЕМНАЯ ИНФОРМАЦИЯ ────────────────────
+│  22°
+│  11:01:56
+│  27.06.2026
+│
+└──────────────────────────────────────────
+
+============================================
+            </pre>
+        </div>
+    </div>
+
+    <!-- Нижняя строка состояния -->
+    <div class="bottom-status-bar">
+        Нижняя строка состояния
+    </div>
+
+</body>
+</html>
